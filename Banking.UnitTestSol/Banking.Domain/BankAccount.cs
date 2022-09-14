@@ -1,28 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Banking.Domain;
 
-namespace Banking.Domain
+public class BankAccount
 {
-    public class BankAccount
+
+    private decimal _balance = 5000M; //JFHCI
+    public void Deposit(decimal amountToDeposit)
     {
-        private decimal _balance = 5000M;
-        public void Deposit(decimal amountToDeposit)
-        {
-            _balance += amountToDeposit;
-        }
+        _balance += amountToDeposit;
+    }
 
-        public decimal GetBalance()
-        {
-            return _balance;
-        }
+    public decimal GetBalance()
+    {
+        return _balance;
+    }
 
-        public void Withdraw(decimal amountToWithdraw)
+    public void Withdraw(decimal amountToWithdraw)
+    {
+        if (AccountHasAvailableFunds(amountToWithdraw))
         {
-            if (amountToWithdraw > _balance) return;
             _balance -= amountToWithdraw;
         }
+        else
+        {
+            throw new OverdraftException();
+        }
+    }
+
+    private bool AccountHasAvailableFunds(decimal amountToWithdraw)
+    {
+        return amountToWithdraw <= _balance;
     }
 }
