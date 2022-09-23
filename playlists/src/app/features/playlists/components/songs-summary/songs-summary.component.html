@@ -1,0 +1,7 @@
+<div class="alert alert-info" *ngIf="model$ | async as model">
+  <p>You have {{ model.numberOfSongs }} Songs!</p>
+  <p>
+    {{ model.songsWithAlbums }} of your songs have albums.
+    {{ model.songsWithoutAlbums }} Do Not.
+  </p>
+</div>

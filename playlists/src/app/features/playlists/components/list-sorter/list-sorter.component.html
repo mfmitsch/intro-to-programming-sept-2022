@@ -1,0 +1,26 @@
+<div class="btn-group" role="group" aria-label="Sort Order for Song List">
+  <button
+    [disabled]="(sortingBy$ | async) === 'artist'"
+    (click)="setSortBy('artist')"
+    type="button"
+    class="btn btn-primary"
+  >
+    Artist
+  </button>
+  <button
+    [disabled]="(sortingBy$ | async) === 'title'"
+    (click)="setSortBy('title')"
+    type="button"
+    class="btn btn-primary"
+  >
+    Title
+  </button>
+  <button
+    [disabled]="(sortingBy$ | async) === 'album'"
+    (click)="setSortBy('album')"
+    type="button"
+    class="btn btn-primary"
+  >
+    Album
+  </button>
+</div>

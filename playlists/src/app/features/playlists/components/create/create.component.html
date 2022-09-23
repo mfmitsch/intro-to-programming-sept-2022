@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="addThisSong(foci)">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      autofocus
+      #foci
+      class="form-control"
+      type="text"
+      id="title"
+      formControlName="title"
+    />
+    <div
+    class="alert alert-danger"
+    *ngIf="title.errors && (title.touched || title.dirty)"
+  >
+    <p *ngIf="title.hasError('required')">You have to give us a title!</p>
+    <p *ngIf="title.hasError('minlength')">Too Short!</p>
+    <p *ngIf="title.hasError('maxlength')">Too Too Long!</p>
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="artist">Artist</label>
+    <input
+      type="text"
+      class="form-control"
+      id="artist"
+      formControlName="artist"
+    />
+    <div
+    class="alert alert-danger"
+    *ngIf="artist.errors && (artist.touched || artist.dirty)"
+  >
+    <p *ngIf="artist.hasError('required')">You have to give us a Artist!</p>
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="album">Album</label>
+    <input
+      type="text"
+      id="album"
+      class="form-control"
+      formControlName="album"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Add This Song</button>
+</form>

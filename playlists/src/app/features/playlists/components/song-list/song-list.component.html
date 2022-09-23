@@ -1,0 +1,25 @@
+<app-create></app-create>
+
+<app-list-sorter></app-list-sorter>
+<div *ngIf="model$ | async as model">
+  <div class="card" *ngFor="let song of model.data">
+    <div class="card-header">{{ song.title }}</div>
+    <div class="card-body">
+      <p>{{ song.title }} is by {{ song.artist }}</p>
+      <p *ngIf="!song.album">There is no album recorded for song.</p>
+      <p *ngIf="song.album">That is on the album {{ song.album }}</p>
+    </div>
+    <div class="card-footer">
+      <button (click)="addToPlayList(song)" class="btn btn-sm btn-success">
+        Add This Song to a Playlist
+      </button>
+      <button
+        (click)="addAlbum(song)"
+        *ngIf="!song.album"
+        class="btn btn-sm btn-success"
+      >
+        Add An Album for this song
+      </button>
+    </div>
+  </div>
+</div>

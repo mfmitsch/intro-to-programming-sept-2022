@@ -1,0 +1,21 @@
+<div class="section-header">
+  <p class="section-title">Let's Go Shopping!</p>
+</div>
+
+<ul>
+  <li *ngFor="let item of shoppingList">
+    <span [ngClass]="{ bought: item.purchased }">{{ item.description }}</span>
+    <button (click)="markPurchased(item)" *ngIf="item.purchased === false">
+      X
+    </button>
+  </li>
+
+  <div>
+    <input type="text" #newItem />
+    <button (click)="addItem(newItem)">Add Item</button>
+  </div>
+</ul>
+
+<button [disabled]="noPurchasedItems" (click)="removePurchased()">
+  Remove Purchased Items
+</button>

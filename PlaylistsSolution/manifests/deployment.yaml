@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlists-api
+  namespace: playlists
+spec:
+  selector:
+    matchLabels:
+      app: playlists-api
+  template:
+    metadata:
+      labels:
+        app: playlists-api
+    spec:
+      containers:
+      - name: playlists-api
+        image: playlists-api:v0.1
+        env:
+          - name: ConnectionStrings__songs
+            value: "Serve:sql-server-service;database=songs;user id=sa;Password=TokyoJoe138!"
+        resources:
+          limits: 
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
